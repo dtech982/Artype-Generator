@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Artyping V2 — Typewriter Template Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Left panel (Resizable) -->
+    <aside class="panel left" id="leftPanel">
+      <div class="resize-handle vertical" id="leftResizer"></div>
+      <h1>Artyping V2 — Template Settings</h1>
+
+      <div id="dropArea" class="drop">Drop image here or <input id="fileInput" type="file" accept="image/*"></div>
+
+      <div class="controls">
+        <label>Rotation (deg): <span id="rotVal">0</span></label>
+        <input id="rotation" type="range" min="-180" max="180" value="0">
+
+        <div class="row two">
+          <div>
+            <label>Brightness: <span id="brightVal">0</span></label>
+            <input id="brightness" type="range" min="-100" max="100" value="0">
+          </div>
+          <div>
+            <label>Contrast: <span id="contrastVal">0</span></label>
+            <input id="contrast" type="range" min="-100" max="100" value="0">
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label>Cell width (px)</label>
+            <input id="cellW" type="number" value="8" min="1">
+          </div>
+          <div>
+            <label>Cell height (px)</label>
+            <input id="cellH" type="number" value="10" min="1">
+          </div>
+        </div>
+
+        <label>Columns (letters across)</label>
+        <input id="columns" type="number" min="1" value="60">
+
+        <label>Image size (slider)</label>
+        <input id="imageSize" type="range" min="10" max="200" value="60">
+
+        <div class="small">
+          <label><input id="alphaThresh" type="checkbox"> Threshold alpha (transparent = white)</label>
+        </div>
+
+        <div class="mapping-block">
+          <label>Mapping (light → dark)</label>
+          <div class="mapping-controls">
+            <button id="addLevel" class="btn tiny">+ Level</button>
+            <button id="removeLevel" class="btn tiny">− Level</button>
+            <label style="margin-left:8px">Levels: <span id="levelCount">8</span></label>
+            <label style="margin-left:8px"><input id="invert" type="checkbox">Invert</label>
+          </div>
+          <table class="mapping" id="mappingTable"><tbody></tbody></table>
+          <canvas id="gradientPreview" title="Gradient preview (white → black)"></canvas>
+        </div>
+
+        <div class="small" style="margin-top:8px;">
+          <label><input id="fillSpacesToggle" type="checkbox"> Replace empty spaces with</label>
+          <input id="fillSpacesChar" type="text" maxlength="4" value="·" style="width:48px;margin-left:6px">
+        </div>
+
+        <hr>
+
+        <label>Typewriter spacing</label>
+        <div class="row two">
+          <select id="spacingPreset">
+            <option value="pica">Pica — 10 CPI</option>
+            <option value="elite">Elite — 12 CPI</option>
+            <option value="custom">Custom</option>
+          </select>
+          <div>
+            <label>CPI</label>
+            <input id="cpi" type="number" value="10" min="1">
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label>Paper width (in)</label>
+            <input id="paperWidth" type="number" min="1" step="0.1" value="8.5">
+          </div>
+          <div>
+            <label>Left margin (in)</label>
+            <input id="leftMargin" type="number" min="0" step="0.1" value="0.75">
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:8px;">
+          <button class="btn" id="generateBtn">Generate Template</button>
+          <button class="btn" id="exportText">Export .txt</button>
+          <button class="btn" id="exportPNG">Export PNG</button>
+          <button class="btn" id="resetBtn">Reset</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main (Right) -->
+    <main class="panel right" id="rightPanel">
+      <div class="resize-handle vertical" id="rightResizer"></div>
+      <h1>Preview & Edit</h1>
+
+      <div class="toolbar" id="toolbarTop">
+        <div class="toolbar-left">
+          <div><strong>Image size:</strong> <span id="sizeLetters">—</span></div>
+          <div><strong>Physical:</strong> <span id="physicalSize">—</span></div>
+        </div>
+        <div class="toolbar-right">
+          <div><strong>Printable cols:</strong> <span id="printableCols">—</span></div>
+          <div><strong>Start col:</strong> <span id="startColumn">—</span></div>
+        </div>
+      </div>
+
+      <div id="resizer" title="Drag to resize toolbar"></div>
+
+      <div class="previewWrap">
+        <div class="previewWindow" id="previewWindow">
+          <div class="zoomBar">
+            <label>Zoom</label>
+            <input id="zoom" type="range" min="0.25" max="4" step="0.05" value="1">
+          </div>
+
+          <canvas id="previewCanvas"></canvas>
+          <div class="overlay hint">Click a cell to cycle • Right-click to insert word</div>
+        </div>
+
+        <div class="panelRight small">
+          <div><strong>Notes</strong></div>
+          <div>You can drag to resize the side panels and toolbar. Right-click to insert a word or custom letter directly.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

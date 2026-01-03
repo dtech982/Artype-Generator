@@ -1,0 +1,149 @@
+:root {
+    --pad: 12px;
+    --bg: #071029;
+    --card: #0b1220;
+    --muted: #9aa4b2;
+    --accent: #1b2b41;
+  }
+  
+  * { box-sizing: border-box; }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica Neue, Arial;
+    color: #dbe6f0;
+    background: linear-gradient(180deg, #071029, #0b1220);
+  }
+  
+  .app {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: var(--pad);
+    height: 100vh;
+    padding: var(--pad);
+    position: relative;
+  }
+  
+  .panel {
+    background: var(--card);
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    overflow: auto;
+    position: relative;
+  }
+  
+  .left h1, .right h1 {
+    font-size: 18px;
+    margin: 0 0 8px;
+  }
+  
+  .drop {
+    border: 2px dashed rgba(255,255,255,0.06);
+    padding: 18px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: var(--muted);
+  }
+  
+  .controls label {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  
+  input[type=range] { width: 100%; }
+  
+  .row { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .row.two > * { flex: 1; }
+  
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn.tiny { padding: 6px 8px; font-size: 12px; }
+  
+  .small { font-size: 12px; color: var(--muted); }
+  
+  .mapping { width: 100%; border-collapse: collapse; margin-top: 6px; }
+  .mapping td { padding: 6px 4px; }
+  
+  #gradientPreview {
+    width: 100%;
+    height: 28px;
+    border-radius: 6px;
+    background: linear-gradient(to right, white, black);
+    margin-top: 8px;
+    display: block;
+  }
+  
+  .previewWrap { display: flex; gap: 12px; align-items: flex-start; margin-top: 10px; }
+  .previewWindow {
+    flex: 1;
+    overflow: auto;
+    border-radius: 8px;
+    background: #fff;
+    padding: 8px;
+    position: relative;
+    min-height: 220px;
+  }
+  #previewCanvas { display: block; transform-origin: 0 0; }
+  
+  .overlay.hint {
+    position: absolute;
+    left: 10px;
+    bottom: 8px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+  }
+  
+  .panelRight { width: 220px; }
+  
+  .toolbar {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+  }
+  
+  .toolbar-left, .toolbar-right { display: flex; gap: 12px; align-items: center; }
+  
+  #resizer {
+    height: 8px;
+    cursor: row-resize;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0));
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 4px;
+  }
+  
+  .zoomBar { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .zoomBar input[type=range] { width: 160px; }
+  
+  .mapping-controls { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; }
+  
+  /* Resizable panel handles */
+  .resize-handle.vertical {
+    position: absolute;
+    top: 0;
+    right: -5px;
+    width: 8px;
+    height: 100%;
+    cursor: col-resize;
+    z-index: 10;
+    background: transparent;
+  }
+  
